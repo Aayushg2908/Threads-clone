@@ -9,7 +9,7 @@ function Share({ id }: { id: string }) {
     <div className="flex justify-around mt-4 m-auto">
       <div className="flex flex-col gap-2 justify-center items-center">
         <WhatsappShareButton
-          url={`https://threads-clone-eosin.vercel.app/share/${id}`}
+          url={`https://threads-clone-eosin.vercel.app/thread/${id}`}
           title={"Hey Guys, Please visit my new Post on Thread!!"}
           separator=": "
         >
@@ -19,7 +19,7 @@ function Share({ id }: { id: string }) {
       </div>
       <div className="flex flex-col gap-2 justify-center items-center">
         <EmailShareButton
-          url={`https://threads-clone-eosin.vercel.app/share/${id}`}
+          url={`https://threads-clone-eosin.vercel.app/thread/${id}`}
           subject={"Posted a new thread"}
         >
           <EmailIcon size={50} round />
@@ -28,7 +28,7 @@ function Share({ id }: { id: string }) {
       </div>
       <div className="flex flex-col gap-2 justify-center items-center">
         <LinkedinShareButton
-          url={`https://threads-clone-eosin.vercel.app/share/${id}`}
+          url={`https://threads-clone-eosin.vercel.app/thread/${id}`}
         >
           <LinkedinIcon size={50} round />
         </LinkedinShareButton>
@@ -36,7 +36,7 @@ function Share({ id }: { id: string }) {
       </div>
       <div className="flex flex-col gap-2 justify-center items-center">
         <TelegramShareButton
-          url={"https://threads-clone-eosin.vercel.app/share/${id}"}
+          url={"https://threads-clone-eosin.vercel.app/thread/${id}"}
           title={"Hey Guys, Please visit my new Post on Thread!!"}
         >
           <TelegramIcon size={50} round />
