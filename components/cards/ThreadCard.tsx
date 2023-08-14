@@ -89,13 +89,15 @@ function ThreadCard({
                   height={24}
                   className="cursor-pointer object-contain"
                 />
-                <Image
-                  src="/assets/share.svg"
-                  alt="heart"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
-                />
+                <Link href={`/share/${id}`}>
+                  <Image
+                    src="/assets/share.svg"
+                    alt="heart"
+                    width={24}
+                    height={24}
+                    className="cursor-pointer object-contain"
+                  />
+                </Link>
               </div>
               {isComment && comments.length > 0 && (
                 <Link href={`/thread/${id}`}>
