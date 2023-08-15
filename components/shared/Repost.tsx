@@ -6,14 +6,16 @@ import { useOrganization } from "@clerk/nextjs";
 
 interface Props {
   text: string;
-  author: string
+  author: string;
 }
 
 function Repost({ text, author }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const { organization } = useOrganization();
-  const finalAuthor = JSON.parse(author);
+  if (author !== undefined) {
+    var finalAuthor = JSON.parse(author);
+  }
 
   const handleRepostEvent = async () => {
     await createThread({
