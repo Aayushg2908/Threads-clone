@@ -5,6 +5,7 @@ import DeleteThread from "../forms/DeleteThread";
 import Like from "../shared/Like";
 import { fetchThreadById } from "@/lib/actions/thread.actions";
 import { useEffect } from "react";
+import Repost from "../shared/Repost";
 
 interface Props {
   id: string;
@@ -92,13 +93,7 @@ async function ThreadCard({
                     className="cursor-pointer object-contain"
                   />
                 </Link>
-                <Image
-                  src="/assets/repost.svg"
-                  alt="heart"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
-                />
+                <Repost text={content} author={JSON.stringify(userId)} />
                 <Link href={`/share/${id}`}>
                   <Image
                     src="/assets/share.svg"
