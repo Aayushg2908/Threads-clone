@@ -9,7 +9,7 @@ interface Props {
   isLiked: Boolean;
 }
 
-async function Like({ threadId, userId, isLiked }: Props) {
+function Like({ threadId, userId, isLiked }: Props) {
   const pathname = usePathname();
   const finalThreadId = JSON.parse(threadId);
   if (userId != undefined) {

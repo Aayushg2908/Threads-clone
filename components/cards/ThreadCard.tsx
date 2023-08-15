@@ -4,6 +4,7 @@ import { formatDateString } from "@/lib/utils";
 import DeleteThread from "../forms/DeleteThread";
 import Like from "../shared/Like";
 import { fetchThreadById } from "@/lib/actions/thread.actions";
+import { useEffect } from "react";
 
 interface Props {
   id: string;
@@ -45,8 +46,7 @@ async function ThreadCard({
   const thread = await fetchThreadById(id);
   const likedUser = thread.liked;
   let isLiked = false;
-  console.log(likedUser);
-  if(likedUser.includes(userId)){
+  if (likedUser.includes(userId)) {
     isLiked = true;
   }
 
@@ -78,7 +78,11 @@ async function ThreadCard({
             <p className="mt-2 text-small-regular text-light-2">{content}</p>
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className="flex gap-3.5">
-                <Like threadId={JSON.stringify(id)} userId={JSON.stringify(userId)} isLiked={isLiked} />
+                <Like
+                  threadId={JSON.stringify(id)}
+                  userId={JSON.stringify(userId)}
+                  isLiked={isLiked}
+                />
                 <Link href={`/thread/${id}`}>
                   <Image
                     src="/assets/reply.svg"
