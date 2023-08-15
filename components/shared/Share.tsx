@@ -15,7 +15,7 @@ function Share({ id }: { id: string }) {
         >
           <WhatsappIcon size={50} round />
         </WhatsappShareButton>
-        <h1 className="text-green-400 ">Whatsapp</h1>
+        <h1 className="hidden xs:block text-green-400">Whatsapp</h1>
       </div>
       <div className="flex flex-col gap-2 justify-center items-center">
         <EmailShareButton
@@ -24,7 +24,7 @@ function Share({ id }: { id: string }) {
         >
           <EmailIcon size={50} round />
         </EmailShareButton>
-        <h1 className="text-gray-400 ">Email</h1>
+        <h1 className="hidden xs:block text-gray-400 ">Email</h1>
       </div>
       <div className="flex flex-col gap-2 justify-center items-center">
         <LinkedinShareButton
@@ -32,7 +32,7 @@ function Share({ id }: { id: string }) {
         >
           <LinkedinIcon size={50} round />
         </LinkedinShareButton>
-        <h1 className="text-blue ">Linkedin</h1>
+        <h1 className="hidden xs:block text-blue ">Linkedin</h1>
       </div>
       <div className="flex flex-col gap-2 justify-center items-center">
         <TelegramShareButton
@@ -41,7 +41,7 @@ function Share({ id }: { id: string }) {
         >
           <TelegramIcon size={50} round />
         </TelegramShareButton>
-        <h1 className="text-cyan-300 ">Telegram</h1>
+        <h1 className="hidden xs:block text-cyan-300 ">Telegram</h1>
       </div>
     </div>
   );

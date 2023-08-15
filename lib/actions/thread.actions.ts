@@ -49,14 +49,18 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
 }
 
 interface Params {
-  text: string,
-  author: string,
-  communityId: string | null,
-  path: string,
+  text: string;
+  author: string;
+  communityId: string | null;
+  path: string;
 }
 
-export async function createThread({ text, author, communityId, path }: Params
-) {
+export async function createThread({
+  text,
+  author,
+  communityId,
+  path,
+}: Params) {
   try {
     connectToDB();
 
@@ -236,5 +240,36 @@ export async function addCommentToThread(
   } catch (err) {
     console.error("Error while adding comment:", err);
     throw new Error("Unable to add comment");
+  }
+}
+
+export async function addLikeToThread(threadId: string, userId: string, pathname: string) {
+  connectToDB();
+  try {
+    const thread = await Thread.findById(threadId);
+    if (!thread.liked.includes(userId)) {
+      thread.liked.push(userId);
+      await thread.save();
+    }
+    revalidatePath(pathname);
+  } catch (err) {
+    console.error("Error while liking the thread:", err);
+    throw new Error("Unable to like the thread");
+  }
+}
+
+export async function removeLikeFromThread(threadId: string, userId: string, pathname: string) {
+  connectToDB();
+  try {
+    const thread = await Thread.findById(threadId);
+    const index = thread.liked.indexOf(userId);
+    if (index !== -1) {
+      thread.liked.splice(index, 1);
+      await thread.save();
+      revalidatePath(pathname);
+    }
+  } catch (err) {
+    console.error("Error while removing like from the thread:", err);
+    throw new Error("Unable to remove like from the thread");
   }
 }

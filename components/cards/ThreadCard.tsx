@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDateString } from "@/lib/utils";
 import DeleteThread from "../forms/DeleteThread";
+import Like from "../shared/Like";
+import { fetchThreadById } from "@/lib/actions/thread.actions";
 
 interface Props {
   id: string;
@@ -25,9 +27,10 @@ interface Props {
     };
   }[];
   isComment?: boolean;
+  userId: string;
 }
 
-function ThreadCard({
+async function ThreadCard({
   id,
   currentUserId,
   parentId,
@@ -37,7 +40,16 @@ function ThreadCard({
   createdAt,
   comments,
   isComment,
+  userId,
 }: Props) {
+  const thread = await fetchThreadById(id);
+  const likedUser = thread.liked;
+  let isLiked = false;
+  console.log(likedUser);
+  if(likedUser.includes(userId)){
+    isLiked = true;
+  }
+
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
@@ -66,13 +78,7 @@ function ThreadCard({
             <p className="mt-2 text-small-regular text-light-2">{content}</p>
             <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className="flex gap-3.5">
-                <Image
-                  src="/assets/heart-gray.svg"
-                  alt="heart"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
-                />
+                <Like threadId={JSON.stringify(id)} userId={JSON.stringify(userId)} isLiked={isLiked} />
                 <Link href={`/thread/${id}`}>
                   <Image
                     src="/assets/reply.svg"
