@@ -3,7 +3,7 @@ import Link from "next/link";
 import { formatDateString } from "@/lib/utils";
 import DeleteThread from "../forms/DeleteThread";
 import Like from "../shared/Like";
-import { fetchThreadById } from "@/lib/actions/thread.actions";
+import { countNoOfLikes, fetchThreadById } from "@/lib/actions/thread.actions";
 import { useEffect } from "react";
 import Repost from "../shared/Repost";
 
@@ -50,6 +50,9 @@ async function ThreadCard({
   if (likedUser.includes(userId)) {
     isLiked = true;
   }
+  const tempId1 = JSON.stringify(id);
+  const tempId2 = JSON.parse(tempId1);
+  let numberOfLikes = await countNoOfLikes(tempId2);
 
   return (
     <article
@@ -83,6 +86,7 @@ async function ThreadCard({
                   threadId={JSON.stringify(id)}
                   userId={JSON.stringify(userId)}
                   isLiked={isLiked}
+                  numberOfLikes={numberOfLikes}
                 />
                 <Link href={`/thread/${id}`}>
                   <Image

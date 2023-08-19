@@ -273,3 +273,15 @@ export async function removeLikeFromThread(threadId: string, userId: string, pat
     throw new Error("Unable to remove like from the thread");
   }
 }
+
+export async function countNoOfLikes(threadId: string) {
+  connectToDB();
+  try {
+    const thread = await Thread.findById(threadId);
+    const numberOfLikes = thread.liked.length;
+    return numberOfLikes;
+  } catch (err) {
+    console.error("Error while counting the number of likes", err);
+    // throw new Error("Unable to Count Number of likes");
+  }
+}

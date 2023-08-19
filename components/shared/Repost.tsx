@@ -28,15 +28,17 @@ function Repost({ text, author }: Props) {
   };
 
   return (
-    <button onClick={handleRepostEvent}>
-      <Image
-        src="/assets/repost.svg"
-        alt="heart"
-        width={24}
-        height={24}
-        className="cursor-pointer object-contain"
-      />
-    </button>
+    <div>
+      <button onClick={handleRepostEvent}>
+        <Image
+          src="/assets/repost.svg"
+          alt="heart"
+          width={24}
+          height={24}
+          className="cursor-pointer object-contain"
+        />
+      </button>
+    </div>
   );
 }
 
