@@ -29,7 +29,7 @@ interface Props {
     };
   }[];
   isComment?: boolean;
-  userId: string;
+  userId?: string;
 }
 
 async function ThreadCard({
@@ -46,10 +46,13 @@ async function ThreadCard({
 }: Props) {
   const thread = await fetchThreadById(id);
   const likedUser = thread.liked;
+  console.log(thread.liked);
   let isLiked = false;
+  
   if (likedUser.includes(userId)) {
     isLiked = true;
   }
+  console.log(likedUser.includes(userId));
   const tempId1 = JSON.stringify(id);
   const tempId2 = JSON.parse(tempId1);
   let numberOfLikes = await countNoOfLikes(tempId2);
